@@ -1,0 +1,21 @@
+{% extends 'post_template.html' %}
+
+{% block title %}
+    {{ article.title }}
+{% endblock title %}
+
+{% block hd_btn_a %}
+    <a href="/edit/post_{{ article.id }}">Edit Post</a>
+{% endblock hd_btn_a %}
+
+{% block section %}
+    {% for para in article.content.split('\n') %}
+        <p>{{ para }}</p>
+    {% endfor %}
+    <form action="/delete" method="post">
+        <input type="number" name="id" class="hidden" value="{{ article.id }}">
+        <button type="submit" class="bg-red-500 font-medium p-1 text-gray-100 rounded-lg w-1/4 md:w-1/6">
+            Delete Post
+        </button>
+    </form>
+{% endblock section %}

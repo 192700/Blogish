@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Title
+{% endblock title %}
+
+
+{% block body %}
+
+    <main class="flex flex-col items-center m-2 p-2 md:px-4">
+        {% if get_flashed_messages() %}
+            <h4 class="w-full rounded bg-green-600 p-4 m-2 text-xl text-gray-200">
+                {{ get_flashed_messages()[0] }} !
+            </h4>
+        {% endif %}
+        <section class="flex flex-col gap-4 h-full w-full flex-shrink bg-yellow-300 bg-opacity-50 p-4">
+            <div class="flex justify-between">
+                <h2 class="text-2xl md:text-3xl font-bold">
+
+                    {% block heading_2 %}
+                    {% endblock heading_2 %}
+
+                </h2>
+                <button class="bg-blue-500 font-medium w-auto h-auto p-1 text-gray-100 rounded-lg">
+
+                    {% block hd_btn_a %} {# meaning header button <a> tag #}
+                        <a href="/new-post">🖊️ New Post</a>
+                    {% endblock hd_btn_a %}
+
+                </button>
+            </div>
+
+            {% block section %}
+            {% endblock section %}
+
+        </section>
+{% endblock body %}

@@ -1,0 +1,24 @@
+{% extends 'post_template.html' %}
+
+{% block title %}
+    Write New Post
+{% endblock title %}
+
+{% block heading_2 %}
+    🖊️ Write New Post ️ 
+{% endblock heading_2 %}
+
+{% block section %}
+    {% set article = article if article else {} %}
+    <form action="/{% block post_url %}new-post{% endblock post_url %}" method="post" class="flex flex-col gap-2 md:gap-3 text-xl md:text-2xl">
+        <input type="text" name="title" required placeholder="Title" class="md:text-3xl px-2 md:p-4" value="{{ article.get('title', '') }}">
+        <textarea type="text" name="content" required placeholder="Body" class="h-64 md:h-80 px-2 md:p-4">{{ article.get('content', '') }}</textarea>
+        <span class="flex gap-1 items-center px-2">
+            <label for="draft">Draft</label>
+            <input type="checkbox" name="draft" id="draft" class="w-auto h-full">
+            <p class="text-xs md:text-sm">If Draft only authorized can access</p>
+        </span>
+        <button type="submit" class="bg-blue-500 font-medium p-1 text-gray-100 rounded-lg w-1/4 md:w-1/6">Post</button>
+        {% block extra %}{% endblock extra %}
+    </form>
+{% endblock section %}
